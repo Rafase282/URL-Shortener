@@ -1,0 +1,31 @@
+{
+  "name": "url-shortener",
+  "version": "0.0.1",
+  "description": "Pass a URL as a parameter and receive a shortened URL in the JSON response.",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rafase282/URL-Shortener.git"
+  },
+  "keywords": [
+    "R282",
+    "url-shortener",
+    "node"
+  ],
+  "author": "Rafael (Rafase282) Rodriguez",
+  "license": "GPL-2.0",
+  "bugs": {
+    "url": "https://github.com/Rafase282/URL-Shortener/issues"
+  },
+  "homepage": "https://github.com/Rafase282/URL-Shortener#readme",
+  "dependencies": {
+    "express": "^4.13.3",
+    "mongodb": "^2.1.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.8.1"
+  }
+}

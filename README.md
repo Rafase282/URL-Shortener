@@ -18,7 +18,7 @@ https://shurli.herokuapp.com/new/https://www.google.com
 https://shurli.herokuapp.com/new/http://freecodecamp.com/news
 ```
 
-##Example creation output:
+## Example creation output:
 
 ```js
 { "original_url": "http://freecodecamp.com/news", "short_url": "https://shurli.herokuapp.com/4" }
