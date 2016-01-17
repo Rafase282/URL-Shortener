@@ -4,7 +4,7 @@
   "description": "Pass a URL as a parameter and receive a shortened URL in the JSON response.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -27,5 +27,8 @@
   },
   "devDependencies": {
     "nodemon": "^1.8.1"
+  },
+  "engines": {
+    "node": "5.4.1"
   }
 }
