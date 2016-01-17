@@ -7,7 +7,7 @@ var api = require('./app/api/url-shortener.js');
 
 var app = express();
 
-mongo.connect('mongodb://localhost:27017/urlshortener', function(err, db) {
+mongo.connect('mongodb://localhost:27017/urlshortener' || process.env.MONGOLAB_URI, function(err, db) {
 
   if (err) {
     throw new Error('Database failed to connect!');
