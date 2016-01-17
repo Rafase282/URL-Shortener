@@ -2,9 +2,9 @@
 
 module.exports = function(app) {
 
-    app.get('/:query', function(req, res) {
-        var ota = { "original_url": req.params.query, "short_url": process.env.APP_URL + "/4" };
-        res.send(ota);
+    app.get('/new/:query', function(req, res) {
+        var urlObj = { "original_url": req.params.query, "short_url": process.env.APP_URL + "/4" };
+        res.send(urlObj);
         
     });
     
