@@ -4,7 +4,7 @@
   "description": "Pass a URL as a parameter and receive a shortened URL in the JSON response.",
   "main": "server.js",
   "scripts": {
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
