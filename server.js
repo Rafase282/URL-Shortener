@@ -4,8 +4,9 @@ var express = require('express');
 var mongo = require('mongodb');
 var routes = require('./app/routes/index.js');
 var api = require('./app/api/url-shortener.js');
-
+var dotenv  = require('dotenv').config({silent: true});
 var app = express();
+
 mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener', function(err, db) {
 
   if (err) {

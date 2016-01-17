@@ -24,7 +24,8 @@
   "dependencies": {
     "dotenv": "^1.2.0",
     "express": "^4.13.3",
-    "mongodb": "^2.1.4"
+    "mongodb": "^2.1.4",
+    "valid-url": "^1.0.9"
   },
   "devDependencies": {
     "nodemon": "^1.8.1"
