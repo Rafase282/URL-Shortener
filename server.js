@@ -7,7 +7,7 @@ var api = require('./app/api/url-shortener.js');
 
 var app = express();
 
-mongo.MongoClient.connect('mongodb://heroku_jh4vrh7r:b6gp487a1elortdtl662kamcp1@ds047315.mongolab.com:47315/heroku_jh4vrh7r', function(err, db) {
+mongo.MongoClient.connect(process.env.MONGOLAB_URI, function(err, db) {
 
   if (err) {
     throw new Error('Database failed to connect!');
