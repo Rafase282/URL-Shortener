@@ -7,6 +7,7 @@ module.exports = function(app, db) {
     });
   app.route('/new')
     .get(function(req, res) {
-      res.send("You need to add an url first.");
+      console.log("Redirected: You need to add an url first.");
+      res.redirect('..');
     });
 };

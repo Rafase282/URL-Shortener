@@ -7,9 +7,6 @@ module.exports = function(app, db) {
       var sites = db.collection('sites');
       var url = req.params.url;
       //sites.find({original_url: url.original_url});
-      console.log(sites.find({
-        original_url: url.original_url
-      }));
       res.send("redirect");
       //res.redirect(sites.url.original_url);
     });
