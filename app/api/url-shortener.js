@@ -3,15 +3,18 @@ var validUrl = require('valid-url');
 module.exports = function(app, db) {
 
   app.route('/:url')
+    // Check and retrieve url to redirect if it exist.
     .get(function(req, res) {
-      var sites = db.collection('sites');
-      var url = req.params.url;
-      //sites.find({original_url: url.original_url});
-      res.send("redirect");
-      //res.redirect(sites.url.original_url);
+      var url = process.env.APP_URL + req.params.url;
+      if (url != process.env.APP_URL + 'favicon.ico') {
+        checkDB(url, db);
+        res.send("redirect");
+        //res.redirect(sites.url.original_url);
+      }
     });
 
   app.get('/new/:url*', function(req, res) {
+    // Create short url, store and display the info.
     var url = req.url.slice(5);
     var urlObj = {};
     if (validUrl.isUri(url)) {
@@ -26,10 +29,10 @@ module.exports = function(app, db) {
         "error": "No short url found for given input"
       };
     }
-    res.send(urlObj || {
+    res.send({
       original_url: urlObj.original_url,
       short_url: urlObj.short_url
-    });
+    } || urlObj);
   });
 
   function linkGen() {
@@ -41,16 +44,22 @@ module.exports = function(app, db) {
   function save(obj, db) {
     // Save object into db.
     var sites = db.collection('sites');
-    sites.insert(obj, function(err, result) {
+    sites.save(obj, function(err, result) {
       if (err) throw err;
+      console.log('Saved ' + result);
     });
   }
 
   function checkDB(obj, db) {
     // Check to see if the site is already there
     var sites = db.collection('sites');
-    return sites.find({
-      original_url: obj.original_url
+    // get the url
+    sites.find({
+      "short_url": obj
+    }, function(err, url) {
+      if (err) throw err;
+      // object of the url
+      console.log('Found ' + url);
     });
   }
 
