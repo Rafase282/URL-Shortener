@@ -18,10 +18,10 @@ mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017
   }
 
   // The format follows as, alias to use for real path, also allows permission to such path.
-  
+
   app.set('views', path.join(__dirname, 'views'));
   app.set('view engine', 'jade');
-  
+
   db.createCollection("sites", {
     capped: true,
     size: 5242880,

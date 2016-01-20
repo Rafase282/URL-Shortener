@@ -58,13 +58,13 @@ module.exports = function(app, db) {
         console.log('Found ' + result);
         console.log('Redirecting to: ' + result.original_url);
         res.redirect(result.original_url);
-    } else {
+      } else {
         // we don't
         res.send('Site not found');
-    }
+      }
     });
   }
-  
+
   function validateURL(url) {
     // Checks to see if it is an actual url
     // Regex from https://gist.github.com/dperini/729294

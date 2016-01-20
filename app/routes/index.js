@@ -7,6 +7,8 @@ module.exports = function(app, db) {
     });
   app.route('/new')
     .get(function(req, res) {
-      res.render('index', {err: "Error: You need to add a proper url"});
+      res.render('index', {
+        err: "Error: You need to add a proper url"
+      });
     });
 };
