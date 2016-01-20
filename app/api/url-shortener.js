@@ -17,26 +17,23 @@ module.exports = function(app, db) {
     // Create short url, store and display the info.
     var url = req.url.slice(5);
     var urlObj = {};
-    if (validUrl.isUri(url)) {
+    if (validateURL(url)) {
       urlObj = {
         "original_url": url,
         "short_url": process.env.APP_URL + linkGen()
       };
-      //console.log(checkDB(urlObj, db));
+      res.send(urlObj);
       save(urlObj, db);
     } else {
       urlObj = {
         "error": "No short url found for given input"
       };
+      res.send(urlObj);
     }
-    res.send({
-      original_url: urlObj.original_url,
-      short_url: urlObj.short_url
-    } || urlObj);
   });
 
   function linkGen() {
-    // Generates random number for link
+    // Generates random four digit number for link
     var num = Math.floor(100000 + Math.random() * 900000);
     return num.toString().substring(0, 4);
   }
@@ -50,17 +47,22 @@ module.exports = function(app, db) {
     });
   }
 
-  function checkDB(obj, db) {
+  function checkDB(link, db) {
     // Check to see if the site is already there
     var sites = db.collection('sites');
     // get the url
     sites.find({
-      "short_url": obj
+      "short_url": link
     }, function(err, url) {
       if (err) throw err;
       // object of the url
       console.log('Found ' + url);
     });
+  }
+  
+  function validateURL(url) {
+    // Checks to see if it is an actual url
+    return validUrl.isUri(url);
   }
 
 };
