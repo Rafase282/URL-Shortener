@@ -1,6 +1,7 @@
 'use strict';
 
 var express = require('express');
+var path = require('path');
 var mongo = require('mongodb');
 var routes = require('./app/routes/index.js');
 var api = require('./app/api/url-shortener.js');
@@ -8,7 +9,6 @@ require('dotenv').config({
   silent: true
 });
 var app = express();
-
 mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/url-shortener', function(err, db) {
 
   if (err) {
@@ -18,7 +18,10 @@ mongo.MongoClient.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017
   }
 
   // The format follows as, alias to use for real path, also allows permission to such path.
-  app.use('/public', express.static(process.cwd() + '/public'));
+  
+  app.set('views', path.join(__dirname, 'views'));
+  app.set('view engine', 'jade');
+  
   db.createCollection("sites", {
     capped: true,
     size: 5242880,

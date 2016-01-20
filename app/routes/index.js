@@ -3,11 +3,10 @@
 module.exports = function(app, db) {
   app.route('/')
     .get(function(req, res) {
-      res.sendFile(process.cwd() + '/public/index.html');
+      res.render('index');
     });
   app.route('/new')
     .get(function(req, res) {
-      console.log("Redirected: You need to add an url first.");
-      res.redirect('..');
+      res.render('index', {err: "Error: You need to add an url after '/new/'"});
     });
 };

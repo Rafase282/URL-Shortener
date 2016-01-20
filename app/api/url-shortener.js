@@ -7,9 +7,7 @@ module.exports = function(app, db) {
     .get(function(req, res) {
       var url = process.env.APP_URL + req.params.url;
       if (url != process.env.APP_URL + 'favicon.ico') {
-        checkDB(url, db);
-        res.send("redirect");
-        //res.redirect(sites.url.original_url);
+        checkDB(url, db, res);
       }
     });
 
@@ -47,21 +45,32 @@ module.exports = function(app, db) {
     });
   }
 
-  function checkDB(link, db) {
+  function checkDB(link, db, res) {
     // Check to see if the site is already there
     var sites = db.collection('sites');
     // get the url
-    sites.find({
+    sites.findOne({
       "short_url": link
-    }, function(err, url) {
+    }, function(err, result) {
       if (err) throw err;
       // object of the url
-      console.log('Found ' + url);
+      if (result) {
+        // we have a result
+        console.log('Found ' + result);
+        console.log('Redirecting to: ' + result.original_url);
+        res.redirect(result.original_url);
+    } else {
+        // we don't
+        res.send('Site not found');
+    }
     });
   }
   
   function validateURL(url) {
     // Checks to see if it is an actual url
+    
+    // /^http(s)?\:\/\/.+\.\w+$/gi
+    
     return validUrl.isUri(url);
   }
 
