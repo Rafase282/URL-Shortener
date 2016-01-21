@@ -3,14 +3,18 @@ module.exports = function(app, db) {
 
   app.route('/:url')
     // Check and retrieve url to redirect if it exist.
-    .get(function(req, res) {
-      var url = process.env.APP_URL + req.params.url;
-      if (url != process.env.APP_URL + 'favicon.ico') {
-        checkDB(url, db, res);
-      }
-    });
+    .get(handleGet);
 
-  app.get('/new/:url*', function(req, res) {
+  app.get('/new/:url*', handlePost);
+
+  function handleGet(req, res) {
+    var url = process.env.APP_URL + req.params.url;
+    if (url != process.env.APP_URL + 'favicon.ico') {
+      findURL(url, db, res);
+    }
+  }
+
+  function handlePost(req, res) {
     // Create short url, store and display the info.
     var url = req.url.slice(5);
     var urlObj = {};
@@ -27,7 +31,7 @@ module.exports = function(app, db) {
       };
       res.send(urlObj);
     }
-  });
+  }
 
   function linkGen() {
     // Generates random four digit number for link
@@ -44,7 +48,7 @@ module.exports = function(app, db) {
     });
   }
 
-  function checkDB(link, db, res) {
+  function findURL(link, db, res) {
     // Check to see if the site is already there
     var sites = db.collection('sites');
     // get the url
