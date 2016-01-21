@@ -1,6 +1,6 @@
 {
   "name": "url-shortener-r282",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Pass a URL as a parameter and receive a shortened URL in the JSON response.",
   "main": "server.js",
   "scripts": {
