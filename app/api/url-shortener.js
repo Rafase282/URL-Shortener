@@ -27,7 +27,7 @@ module.exports = function(app, db) {
       save(urlObj, db);
     } else {
       urlObj = {
-        "error": "No short url found for given input"
+        "error": "Wrong url format, make sure you have a valid protocol and real site."
       };
       res.send(urlObj);
     }
@@ -64,7 +64,9 @@ module.exports = function(app, db) {
         res.redirect(result.original_url);
       } else {
         // we don't
-        res.send('Site not found');
+        res.send({
+        "error": "This url is not onteh database."
+      });
       }
     });
   }
