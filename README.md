@@ -14,20 +14,24 @@ Created by Rafase282
 ## Example creation usage:
 
 ```js
-https://shurli.herokuapp.com/new/https://www.google.com 
-https://shurli.herokuapp.com/new/http://freecodecamp.com/news
+https://little-url.herokuapp.com/new/https://www.google.com
+https://little-url.herokuapp.com/new/http://foo.com:80
 ```
 
 ## Example creation output:
 
 ```js
-{ "original_url": "http://freecodecamp.com/news", "short_url": "https://shurli.herokuapp.com/4" }
+{"original_url":"http://foo.com:80","short_url":"https://little-url.herokuapp.com/8170"}
 ```
 
 ## Usage:
 
-`https://shurli.herokuapp.com/4`
+```
+https://little-url.herokuapp.com/2871
+```
 
 ### Will redirect to:
 
-`http://freecodecamp.com/news`
+```
+https://www.google.com/
+```
