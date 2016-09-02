@@ -65,7 +65,7 @@ module.exports = function(app, db) {
       } else {
         // we don't
         res.send({
-        "error": "This url is not onteh database."
+        "error": "This url is not on the database."
       });
       }
     });
